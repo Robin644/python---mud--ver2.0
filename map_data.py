@@ -35,7 +35,7 @@ def confirm_scene_imformation_items():#打印场景道具信息的函数
         print("|*这里有物品|"+str(npc_print_list).replace("'","")+"|")
     else:
         print("|这里没有物品~|")
-def confirm_scene_imformation_equipments():#打印场景装备信息的函数
+def confirm_scene_imformation_equipment():#打印场景装备信息的函数
     import player_data
     position = player_data.player_data_global['player_position']
     npc_name_list = list(str(pd.read_excel(player_data.player_data_global['player_Map_name'], sheet_name='场景装备', header=None).values[
@@ -82,7 +82,7 @@ def confirm_room_imformation_items():#打印房间物品信息的函数
         print("|*房间里有物品：|"+str(npc_print_list).replace("'","")+"|")
     else:
         print("|房间里没有物品~|")
-def confirm_room_imformation_equipments():#打印房间信息的函数
+def confirm_room_imformation_equipment():#打印房间信息的函数
     import player_data
     position = player_data.player_data_global['player_position']
     npc_name_list = list(str(pd.read_excel(player_data.player_data_global['player_Map_name'], sheet_name='房间装备', header=None).values[
@@ -119,10 +119,10 @@ def room_function_tao():
     import player_data
     player_data.player_data_global['player_money']+=114514
 def room_function_dubuo():
-    import Small_Fuction
+    import Small_Function
     dubuo_class=input("q退出，a二十一点")
     if dubuo_class=='a':
-        Small_Fuction.dubup_21()
+        Small_Function.dubup_21()
     elif dubuo_class=='q':
         print("还是不赌博了~")
 
@@ -136,9 +136,9 @@ def room_function_buy1():#赌场超市
 
 def meet_npc(npc_name):#npc互动
     import player_data
-    import Small_Fuction
+    import Small_Function
 
-    npc_in_list_position=Small_Fuction.get_coordinates(pd.read_excel('all_npc.xlsx',sheet_name='名称',header=None),npc_name)#[0]行[1]列
+    npc_in_list_position=Small_Function.get_coordinates(pd.read_excel('all_npc.xlsx', sheet_name='名称', header=None), npc_name)#[0]行[1]列
     #print(npc_in_list_position)
     if npc_in_list_position[0]=="找不到":
         print("|这里没有这个人啊？|")
@@ -206,7 +206,7 @@ def meet_room():#进房间
         print("————————————房间："+str(room_name)+"——————————————————")
         print('描述:'+str(room_describe))
         confirm_room_imformation_npc()
-        confirm_room_imformation_equipments()
+        confirm_room_imformation_equipment()
         confirm_room_imformation_items()
         room_code=input('输入q离开，输入功能ID进行房间功能使用,输入npc进行互动:')
         if room_code=='q':
@@ -269,7 +269,7 @@ print(a)"""
 def confirm_map_imformation(position):#打印位置函数
     import player_data
     position=player_data.player_data_global['player_position']
-    print("目前位置坐标:列X:"+str(position[0])+'|行Y:'+str(position[1]))
+    print("目前位置坐标:X:列"+str(position[0])+'|Y行:'+str(position[1]))
     scene=pd.read_excel(player_data.player_data_global['player_Map_name'],sheet_name='场景',header=None).values[position[1],position[0]]#y坐标代表行，x代表列，读取行/列
     print("**********\n你现在位于场景:|" + str(scene)+"|")#nan=None
     if str(scene)== 'nan':

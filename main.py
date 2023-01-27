@@ -1,7 +1,7 @@
 import map_data
 import player_data
 import world_data
-import Small_Fuction
+import Small_Function
 while player_data.player_data_global['player_condition']=='alive':
     print('\n\n')
     print("&^" * 20)  # start
@@ -13,7 +13,7 @@ while player_data.player_data_global['player_condition']=='alive':
     map_data.confirm_map_imformation(player_data.player_data_global['player_position'])#打印位置信息
     map_data.confirm_scene_imformation_npc()#打印npc信息
     map_data.confirm_scene_imformation_items()
-    map_data.confirm_scene_imformation_equipments()
+    map_data.confirm_scene_imformation_equipment()
 
 
     #调试模式提示
@@ -210,15 +210,27 @@ while player_data.player_data_global['player_condition']=='alive':
 
     if inputcode=='map':
         import pandas as pd
+        import numpy
         pd.set_option('display.colheader_justify', 'center')
         pd.set_option('display.max_columns', 2000)
         pd.set_option('display.width', 2000)
         pd.set_option('display.max_colwidth', 2000)
         pd.set_option('display.unicode.ambiguous_as_wide', True)
         pd.set_option('display.unicode.east_asian_width', True)
-        print(str(pd.read_excel(player_data.player_data_global['player_Map_name'],header=None,sheet_name='场景')).replace('NaN',''))
+        #tem_p=[player_data.player_data_global["player_position"][1],player_data.player_data_global["player_position"][0]]
+        #original_name=str(pd.read_excel(player_data.player_data_global['player_Map_name'],header=None,sheet_name='场景').values[player_data.player_data_global["player_position"][1],player_data.player_data_global["player_position"][0]])
+       # print("xadwdw1223"+original_name)#
+        #print(pd.read_excel(player_data.player_data_global['player_Map_name'], header=None, sheet_name='场景').values[player_data.player_data_global["player_position"][1],player_data.player_data_global["player_position"][0]]='(你在这)')
+        #print(pd.read_excel(player_data.player_data_global['player_Map_name'], header=None, sheet_name='场景').loc[player_data.player_data_global["player_position"][1],player_data.player_data_global["player_position"][0]])
+
+        #print(pd.read_excel(player_data.player_data_global['player_Map_name'], header=None, sheet_name='场景').values[player_data.player_data_global["player_position"][1],player_data.player_data_global["player_position"][0]])
+        print(str(pd.read_excel(player_data.player_data_global['player_Map_name'],header=None,sheet_name='场景')).replace('NaN','   '))
+        ##
+        #pd.read_excel(player_data.player_data_global['player_Map_name'], header=None, sheet_name='场景').loc[
+           # player_data.player_data_global["player_position"][1], player_data.player_data_global["player_position"][
+              #  0]] = original_name
     if inputcode=="C":
-        Small_Fuction.Check_self()
+        Small_Function.Check_self()
     if inputcode=="move":
         player_data.player_data_global['player_position']=Player_move()
     if inputcode=="room":
@@ -234,10 +246,10 @@ while player_data.player_data_global['player_condition']=='alive':
             print('-取消存档-')
             pass
         elif code == "1":
-            Small_Fuction.cundang()
+            Small_Function.cundang()
         elif code == "2":
             ####################################
-             map_data.position,world_data.Time,player_data.player_data_global= Small_Fuction.dudang()[0],Small_Fuction.dudang()[1],Small_Fuction.dudang()[2]
+             map_data.position,world_data.Time,player_data.player_data_global= Small_Function.dudang()[0], Small_Function.dudang()[1], Small_Function.dudang()[2]
             ######AA##############################
         print("\n" + "-" * 30)##
 
